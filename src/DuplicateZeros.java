@@ -10,26 +10,20 @@ public class DuplicateZeros {
     }
 
     public static void duplicateZeros(int[] arr) {
-        int[] newArr = new int[arr.length];
-        int count = 0;
-        for(int i=0;count<arr.length;i++){
 
-                if(arr[i] == 0){
-                    newArr[count] = 0;
-                    count++;
-                        if(count == arr.length)
-                            break;
-                    newArr[count] = 0;
-                    count++;
+        for(int i=0;i<arr.length;i++){
+            if(arr[i] == 0)
+            {
+                for (int j = arr.length-2; j >= i; j--)
+                {
+                    // Shift each element one position to the right.
+                    arr[j + 1] = arr[j];
                 }
-                else{
-                    newArr[count] = arr[i];
-                    count++;
-                }
+
+                arr[i++] = 0;
+            }
         }
-        for(int j=0;j<arr.length;j++){
-            arr[j] = newArr[j];
-        }
+
         System.out.println(Arrays.toString(arr));
     }
 
